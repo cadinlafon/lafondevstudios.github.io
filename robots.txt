@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cadinlafon.github.io/lafondevstudios.github.io/sitemap.xml

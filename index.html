@@ -1,705 +1,196 @@
-```html
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <meta name="description" content="LaFon Dev Studios builds software, open-source tools, and technology projects.">
-  <meta name="author" content="LaFon Dev Studios">
-
-  <title>LaFon Dev Studios</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Roboto,
-        Helvetica,
-        Arial,
-        sans-serif;
-      background: #0b0f14;
-      color: #f5f7fa;
-      line-height: 1.6;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .container {
-      width: min(1100px, 92%);
-      margin: 0 auto;
-    }
-
-    /* NAVIGATION */
-
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      backdrop-filter: blur(14px);
-      background: rgba(11, 15, 20, 0.82);
-      border-bottom: 1px solid #202833;
-    }
-
-    .nav-inner {
-      height: 70px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .logo {
-      font-size: 1.1rem;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-    }
-
-    .logo span {
-      color: #6ea8fe;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 26px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: #aeb8c4;
-      font-size: 0.95rem;
-      transition: color 0.2s ease;
-    }
-
-    .nav-links a:hover {
-      color: #ffffff;
-    }
-
-    /* HERO */
-
-    .hero {
-      min-height: 650px;
-      display: flex;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      width: 600px;
-      height: 600px;
-      border-radius: 50%;
-      background: rgba(65, 105, 225, 0.12);
-      filter: blur(100px);
-      top: -250px;
-      right: -150px;
-      pointer-events: none;
-    }
-
-    .hero-content {
-      max-width: 780px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .eyebrow {
-      display: inline-block;
-      padding: 7px 13px;
-      border: 1px solid #283443;
-      border-radius: 999px;
-      color: #9eb7d3;
-      background: #111821;
-      font-size: 0.85rem;
-      margin-bottom: 25px;
-    }
-
-    h1 {
-      font-size: clamp(3rem, 8vw, 6rem);
-      line-height: 0.98;
-      letter-spacing: -0.065em;
-      margin-bottom: 28px;
-    }
-
-    h1 span {
-      color: #6ea8fe;
-    }
-
-    .hero p {
-      max-width: 650px;
-      color: #aeb8c4;
-      font-size: 1.2rem;
-      margin-bottom: 35px;
-    }
-
-    .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 13px;
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 12px 19px;
-      border-radius: 9px;
-      border: 1px solid #2a3543;
-      background: #151c25;
-      color: #ffffff;
-      font-weight: 600;
-      transition:
-        transform 0.2s ease,
-        background 0.2s ease,
-        border-color 0.2s ease;
-    }
-
-    .button:hover {
-      transform: translateY(-2px);
-      background: #1b2531;
-      border-color: #3d4c5f;
-    }
-
-    .button.primary {
-      background: #6ea8fe;
-      border-color: #6ea8fe;
-      color: #08111c;
-    }
-
-    .button.primary:hover {
-      background: #82b4ff;
-    }
-
-    /* SECTIONS */
-
-    section {
-      padding: 100px 0;
-      border-top: 1px solid #1d252f;
-    }
-
-    .section-heading {
-      margin-bottom: 45px;
-    }
-
-    .section-heading h2 {
-      font-size: 2.3rem;
-      letter-spacing: -0.04em;
-      margin-bottom: 10px;
-    }
-
-    .section-heading p {
-      color: #8f9baa;
-      max-width: 650px;
-    }
-
-    /* PROJECTS */
-
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-    }
-
-    .project {
-      display: flex;
-      flex-direction: column;
-      padding: 28px;
-      min-height: 260px;
-      border: 1px solid #252e39;
-      border-radius: 15px;
-      background: #10161e;
-      transition:
-        transform 0.2s ease,
-        border-color 0.2s ease;
-    }
-
-    .project:hover {
-      transform: translateY(-4px);
-      border-color: #3b4a5c;
-    }
-
-    .project-icon {
-      width: 45px;
-      height: 45px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 10px;
-      background: #192231;
-      margin-bottom: 20px;
-      font-size: 1.3rem;
-    }
-
-    .project h3 {
-      font-size: 1.35rem;
-      margin-bottom: 9px;
-    }
-
-    .project p {
-      color: #929dab;
-      font-size: 0.95rem;
-      margin-bottom: 20px;
-    }
-
-    .project-link {
-      margin-top: auto;
-      color: #76adff;
-      font-weight: 600;
-      font-size: 0.9rem;
-    }
-
-    /* ABOUT */
-
-    .about {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: start;
-    }
-
-    .about h2 {
-      font-size: 2.3rem;
-      letter-spacing: -0.04em;
-      margin-bottom: 15px;
-    }
-
-    .about p {
-      color: #9aa5b2;
-      margin-bottom: 15px;
-    }
-
-    .values {
-      display: grid;
-      gap: 15px;
-    }
-
-    .value {
-      padding: 20px;
-      border: 1px solid #252e39;
-      border-radius: 12px;
-      background: #10161e;
-    }
-
-    .value h3 {
-      margin-bottom: 5px;
-    }
-
-    .value p {
-      margin: 0;
-      font-size: 0.9rem;
-    }
-
-    /* OPEN SOURCE */
-
-    .opensource {
-      padding: 35px;
-      border: 1px solid #293544;
-      border-radius: 16px;
-      background:
-        linear-gradient(
-          135deg,
-          #111a25,
-          #0e141b
-        );
-    }
-
-    .opensource h2 {
-      font-size: 2rem;
-      margin-bottom: 12px;
-    }
-
-    .opensource p {
-      color: #9ba6b3;
-      max-width: 700px;
-      margin-bottom: 25px;
-    }
-
-    /* FOOTER */
-
-    footer {
-      padding: 35px 0;
-      border-top: 1px solid #1d252f;
-      color: #788492;
-      font-size: 0.9rem;
-    }
-
-    .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 20px;
-    }
-
-    .footer-links a:hover {
-      color: #ffffff;
-    }
-
-    /* MOBILE */
-
-    @media (max-width: 750px) {
-      .nav-links {
-        display: none;
-      }
-
-      .hero {
-        min-height: 570px;
-      }
-
-      .hero p {
-        font-size: 1.05rem;
-      }
-
-      .projects {
-        grid-template-columns: 1fr;
-      }
-
-      .about {
-        grid-template-columns: 1fr;
-        gap: 35px;
-      }
-
-      section {
-        padding: 70px 0;
-      }
-    }
-  </style>
+  <title>LaFon Dev Studios — Apps, Developer Tools & Open Source</title>
+  <meta name="description" content="LaFon Dev Studios is an independent developer studio designing apps, websites, developer tools, open-source software, and more.">
+  <meta name="theme-color" content="#070b12">
+  <meta property="og:title" content="LaFon Dev Studios">
+  <meta property="og:description" content="Independent developer studio building apps, websites, developer tools, and open-source software.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://cadinlafon.github.io/lafondevstudios.github.io/">
+  <link rel="icon" href="assets/lafon-logo.png">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"LaFon Dev Studios",
+    "url":"https://cadinlafon.github.io/lafondevstudios.github.io/",
+    "sameAs":["https://github.com/cadinlafon"]
+  }
+  </script>
 </head>
-
 <body>
-
-  <!-- NAVIGATION -->
-
-  <nav>
-    <div class="container nav-inner">
-      <a href="#" class="logo">
-        LaFon <span>Dev Studios</span>
-      </a>
-
-      <ul class="nav-links">
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#opensource">Open Source</a></li>
-        <li>
-          <a
-            href="https://github.com/lafondevstudios"
-            target="_blank"
-            rel="noopener"
-          >
-            GitHub
-          </a>
-        </li>
-      </ul>
+  <div class="noise"></div>
+  <nav class="nav">
+    <a class="brand" href="index.html" aria-label="LaFon Dev Studios home">
+      <img src="assets/lafon-logo.png" alt="LaFon Dev Studios">
+    </a>
+    <div class="nav-links">
+      <a href="#projects">Projects</a>
+      <a href="#opensource">Open Source</a>
+      <a href="#tech">Tech</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <button id="themeToggle" class="icon-btn" aria-label="Toggle light and dark mode">☀️</button>
+      <a class="github-btn" href="https://github.com/cadinlafon" target="_blank" rel="noopener">GitHub ↗</a>
+      <button id="menuToggle" class="menu-btn" aria-label="Open menu">☰</button>
     </div>
   </nav>
 
-
-  <!-- HERO -->
-
   <main>
-
     <section class="hero">
-      <div class="container">
-        <div class="hero-content">
-
-          <div class="eyebrow">
-            Software · Technology · Open Source
+      <div class="hero-grid"></div>
+      <div class="container hero-inner">
+        <div class="hero-copy reveal">
+          <div class="eyebrow"><span class="pulse"></span> INDEPENDENT DEVELOPER STUDIO</div>
+          <h1>I build software<br><span>that solves problems.</span></h1>
+          <p>Apps, websites, developer tools, automation, open-source projects, and whatever interesting idea comes next.</p>
+          <div class="actions">
+            <a class="btn primary" href="#projects">Explore Projects <span>→</span></a>
+            <a class="btn" href="https://github.com/cadinlafon" target="_blank" rel="noopener">View GitHub <span>↗</span></a>
           </div>
+        </div>
 
-          <h1>
-            Building useful<br>
-            <span>software.</span>
-          </h1>
-
-          <p>
-            LaFon Dev Studios builds software, developer tools,
-            and open-source projects designed to solve real-world
-            problems and make technology more useful.
-          </p>
-
-          <div class="buttons">
-            <a href="#projects" class="button primary">
-              Explore Projects
-            </a>
-
-            <a
-              href="https://github.com/lafondevstudios"
-              class="button"
-              target="_blank"
-              rel="noopener"
-            >
-              View GitHub
-            </a>
+        <div class="terminal-wrap reveal delay-1">
+          <div class="terminal">
+            <div class="terminal-bar">
+              <span></span><span></span><span></span>
+              <b>lafon-dev-studios</b>
+            </div>
+            <div class="terminal-body" id="terminal">
+              <div><i>$</i> whoami</div>
+              <strong>cadinlafon</strong>
+              <div><i>$</i> studio</div>
+              <strong>LaFon Dev Studios</strong>
+              <div><i>$</i> projects --featured</div>
+              <strong>✓ Sermon Audio<br>✓ Moneta Email Sync</strong>
+              <div><i>$</i> git status</div>
+              <strong class="success">Everything is up to date.</strong>
+              <div><i>$</i> <span class="cursor"></span></div>
+            </div>
           </div>
-
         </div>
       </div>
+      <div class="scroll-hint">SCROLL TO EXPLORE <span>↓</span></div>
     </section>
 
-
-    <!-- PROJECTS -->
-
-    <section id="projects">
-
+    <section id="projects" class="section">
       <div class="container">
-
-        <div class="section-heading">
-          <h2>Projects</h2>
-
-          <p>
-            A collection of applications, developer tools,
-            experiments, and open-source software.
-          </p>
+        <div class="section-head reveal">
+          <div><span class="section-kicker">01 / PROJECTS</span><h2>Things I'm building.</h2></div>
+          <p>Two projects are featured here. More experiments and tools live over on GitHub.</p>
         </div>
 
-        <div class="projects">
-
-          <!-- MONETA -->
-
-          <a
-            class="project"
-            href="https://github.com/cadinlafon/monetafinance"
-            target="_blank"
-            rel="noopener"
-          >
-            <div class="project-icon">💰</div>
-
-            <h3>Moneta</h3>
-
-            <p>
-              A personal finance platform for tracking money,
-              transactions, budgets, goals, accounts, and more.
-            </p>
-
-            <span class="project-link">
-              View project →
-            </span>
-          </a>
-
-
-          <!-- MONETA EMAIL SYNC -->
-
-          <a
-            class="project"
-            href="https://github.com/cadinlafon/Moneta-Email-Sync"
-            target="_blank"
-            rel="noopener"
-          >
-            <div class="project-icon">📧</div>
-
-            <h3>Moneta Email Sync</h3>
-
-            <p>
-              An open-source tool for turning financial emails
-              into structured transaction data for personal
-              finance applications.
-            </p>
-
-            <span class="project-link">
-              View project →
-            </span>
-          </a>
-
-
-          <!-- SERMON AUDIO -->
-
-          <a
-            class="project"
-            href="https://github.com/cadinlafon/sermon-audio-app"
-            target="_blank"
-            rel="noopener"
-          >
-            <div class="project-icon">🎧</div>
-
+        <div class="project-grid">
+          <article class="project-card featured reveal">
+            <div class="project-glow cyan"></div>
+            <div class="project-top"><span class="project-icon">🎧</span><span class="status">ACTIVE</span></div>
             <h3>Sermon Audio</h3>
+            <p>A modern audio experience for organizing, discovering, and listening to sermons and teaching.</p>
+            <div class="tags"><span>React</span><span>Vite</span><span>Firebase</span><span>PWA</span></div>
+            <div class="card-links">
+              <a href="projects/sermon-audio.html">Explore project →</a>
+              <a href="https://github.com/cadinlafon/sermon-audio-app" target="_blank" rel="noopener">GitHub ↗</a>
+            </div>
+          </article>
 
-            <p>
-              A modern audio application for organizing,
-              discovering, and listening to sermons and
-              teaching.
-            </p>
-
-            <span class="project-link">
-              View project →
-            </span>
-          </a>
-
-
-          <!-- OOPS WRONG VILLAGE -->
-
-          <a
-            class="project"
-            href="https://github.com/cadinlafon"
-            target="_blank"
-            rel="noopener"
-          >
-            <div class="project-icon">🎮</div>
-
-            <h3>More Projects</h3>
-
-            <p>
-              Games, experiments, utilities, and other projects
-              are available on GitHub.
-            </p>
-
-            <span class="project-link">
-              Browse GitHub →
-            </span>
-          </a>
-
+          <article class="project-card featured reveal delay-1">
+            <div class="project-glow blue"></div>
+            <div class="project-top"><span class="project-icon">📧</span><span class="status">OPEN SOURCE</span></div>
+            <h3>Moneta Email Sync</h3>
+            <p>A developer tool for turning financial emails into structured transaction data for personal finance applications.</p>
+            <div class="tags"><span>API</span><span>Email</span><span>Automation</span><span>Open Source</span></div>
+            <div class="card-links">
+              <a href="projects/moneta-email-sync.html">Explore project →</a>
+              <a href="https://github.com/cadinlafon/moneta-email-sync" target="_blank" rel="noopener">GitHub ↗</a>
+            </div>
+          </article>
         </div>
 
+        <div class="more-projects reveal">
+          <div><span>More experiments, apps, and tools</span><strong>→</strong></div>
+          <a href="https://github.com/cadinlafon?tab=repositories" target="_blank" rel="noopener">Browse all repositories ↗</a>
+        </div>
       </div>
-
     </section>
 
-
-    <!-- ABOUT -->
-
-    <section id="about">
-
+    <section id="opensource" class="section alt">
       <div class="container">
-
-        <div class="about">
-
-          <div>
-            <h2>About LaFon Dev Studios</h2>
-
-            <p>
-              LaFon Dev Studios is an independent software
-              development studio focused on building useful,
-              practical technology.
-            </p>
-
-            <p>
-              Projects range from personal finance software
-              and developer tools to applications, experiments,
-              and open-source projects.
-            </p>
-          </div>
-
-          <div class="values">
-
-            <div class="value">
-              <h3>🛠 Build</h3>
-              <p>
-                Create practical software that solves real
-                problems.
-              </p>
-            </div>
-
-            <div class="value">
-              <h3>🌎 Open</h3>
-              <p>
-                Share useful tools and make projects accessible
-                to other developers.
-              </p>
-            </div>
-
-            <div class="value">
-              <h3>💡 Experiment</h3>
-              <p>
-                Explore new technologies and turn interesting
-                ideas into working projects.
-              </p>
-            </div>
-
-          </div>
-
+        <div class="section-head reveal">
+          <div><span class="section-kicker">02 / OPEN SOURCE</span><h2>Build it. Share it.</h2></div>
+          <p>Open source is a major part of how I build. Explore the code, documentation, issues, releases, and development history.</p>
         </div>
-
+        <div class="github-panel reveal">
+          <div class="github-panel-main">
+            <div class="gh-mark">⌘</div>
+            <div><span class="muted">PUBLIC DEVELOPMENT</span><h3>See what I'm building right now.</h3><p>Live repository data is loaded from GitHub when available.</p></div>
+          </div>
+          <div id="githubStats" class="github-stats">
+            <div><b id="repoCount">—</b><span>Public repos</span></div>
+            <div><b id="starCount">—</b><span>Total stars</span></div>
+            <div><b id="forkCount">—</b><span>Total forks</span></div>
+          </div>
+          <div class="github-activity" id="githubActivity"><span class="spinner"></span> Loading GitHub activity…</div>
+          <a class="btn primary" href="https://github.com/cadinlafon" target="_blank" rel="noopener">Open GitHub profile ↗</a>
+        </div>
       </div>
-
     </section>
 
-
-    <!-- OPEN SOURCE -->
-
-    <section id="opensource">
-
+    <section id="tech" class="section">
       <div class="container">
-
-        <div class="opensource">
-
-          <h2>Open Source</h2>
-
-          <p>
-            Many LaFon Dev Studios projects are available on
-            GitHub. Explore the source code, documentation,
-            issues, and development history.
-          </p>
-
-          <a
-            href="https://github.com/cadinlafon"
-            class="button"
-            target="_blank"
-            rel="noopener"
-          >
-            Explore GitHub →
-          </a>
-
+        <div class="section-head reveal">
+          <div><span class="section-kicker">03 / TECHNOLOGY</span><h2>The toolbox.</h2></div>
+          <p>Technologies used across different projects and experiments.</p>
         </div>
-
+        <div class="tech-grid reveal">
+          <div>⚛️ <span>React</span></div><div>TS <span>TypeScript</span></div><div>JS <span>JavaScript</span></div>
+          <div>⚡ <span>Vite</span></div><div>🔥 <span>Firebase</span></div><div>☁️ <span>Cloudflare</span></div>
+          <div>◉ <span>Node.js</span></div><div>◈ <span>GitHub</span></div><div>⌘ <span>Git</span></div><div>🌐 <span>PWAs</span></div>
+        </div>
       </div>
-
     </section>
 
+    <section id="about" class="section alt">
+      <div class="container about-grid">
+        <div class="reveal"><span class="section-kicker">04 / ABOUT</span><h2>Why LaFon Dev Studios?</h2></div>
+        <div class="about-copy reveal delay-1">
+          <p>LaFon Dev Studios is an independent developer studio focused on designing and building useful technology.</p>
+          <p>I work across applications, websites, developer tools, automation, open-source software, and experiments.</p>
+          <div class="principles">
+            <div><b>01</b><span><strong>Build</strong> Turn ideas into working software.</span></div>
+            <div><b>02</b><span><strong>Improve</strong> Keep refining the experience and the code.</span></div>
+            <div><b>03</b><span><strong>Share</strong> Publish useful work when it can help others.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section contact-section">
+      <div class="container contact-card reveal">
+        <span class="section-kicker">05 / CONTACT</span>
+        <h2>Have an idea?<br><span>Let's build it.</span></h2>
+        <p>Found a bug, have a feature request, or want to talk about a project? Open an issue on the relevant GitHub repository.</p>
+        <div class="actions">
+          <a class="btn primary" href="https://github.com/cadinlafon" target="_blank" rel="noopener">Open GitHub ↗</a>
+          <a class="btn" href="https://github.com/cadinlafon/Moneta-Email-Sync/issues" target="_blank" rel="noopener">Open an Issue ↗</a>
+        </div>
+      </div>
+    </section>
   </main>
 
-
-  <!-- FOOTER -->
-
   <footer>
-
     <div class="container footer-inner">
-
-      <div>
-        © 2026 LaFon Dev Studios
-      </div>
-
-      <div class="footer-links">
-
-        <a
-          href="https://github.com/cadinlafon"
-          target="_blank"
-          rel="noopener"
-        >
-          GitHub
-        </a>
-
-        <a href="#projects">
-          Projects
-        </a>
-
-        <a href="#about">
-          About
-        </a>
-
-      </div>
-
+      <div class="footer-brand"><img src="assets/lafon-logo.png" alt="LaFon Dev Studios"></div>
+      <div>© 2026 LaFon Dev Studios</div>
+      <div class="footer-links"><a href="https://github.com/cadinlafon" target="_blank" rel="noopener">GitHub</a><a href="404.html">404</a></div>
     </div>
-
   </footer>
 
+  <script src="js/main.js"></script>
 </body>
 </html>
-```
